@@ -510,17 +510,20 @@ if sp_lc_select == 'spec':
         tmpexpo_arr = bkgspec_all_bkgmap[ii*bkgmap_num:((ii+1)*bkgmap_num),2]
         tmpspec_arr = bkgspec_all_bkgmap[ii*bkgmap_num:((ii+1)*bkgmap_num),3:259]
         spec_cnt= np.sum(tmpspec_arr,axis=0)
-        if(ii <= 20):
-            plt.figure()
-            plt.plot(spec_cnt,'C1')
-            plt.plot(spec_bldmod,'C2')
-            plt.plot(spec_cnt-spec_bldmod)
-            plt.show()
+        #if(ii <= 20):
+        #    plt.figure()
+        #    plt.plot(spec_cnt,'C1')
+        #    plt.plot(spec_bldmod,'C2')
+        #    plt.plot(spec_cnt-spec_bldmod)
+        #    plt.show()
         for jj in xrange(0,6):
             in1 = int(cha_data[ii,jj])
             in2 = int(cha_data[ii,jj+1])
             spec_cnt[in1:in2] = spec_cnt[in1:in2]/coe_arr[jj]
-        tmpstr = src_name[ii]
+        try:
+            tmpstr = src_name[ii]
+        except:
+            continue
         tmppos = tmpstr.find('\n')
         if (len(tmpstr[0:tmppos]) == 0):
             print("Input file name error:")
